@@ -45,9 +45,9 @@ public final class HostConnectionCounters {
       LOG.debug("Host {} has {} successfull connections", host, successes);
       if (null != metricRegistry) {
         metricRegistry
-            .counter(
-                MetricRegistry.name(
-                    JmxConnectionFactory.class, "connections", host.replace('.', '-')))
+            .counter(MetricRegistry.name(JmxConnectionFactory.class,
+                                         "connections",
+                                         host.replace('.', 'x').replaceAll("[^A-Za-z0-9]", "")))
             .inc();
       }
     } catch (RuntimeException e) {
@@ -64,9 +64,9 @@ public final class HostConnectionCounters {
       LOG.debug("Host {} has {} successfull connections", host, successes);
       if (null != metricRegistry) {
         metricRegistry
-            .counter(
-                MetricRegistry.name(
-                    JmxConnectionFactory.class, "connections", host.replace('.', '-')))
+            .counter(MetricRegistry.name(JmxConnectionFactory.class,
+                                         "connections",
+                                         host.replace('.', 'x').replaceAll("[^A-Za-z0-9]", "")))
             .dec();
       }
     } catch (RuntimeException e) {
